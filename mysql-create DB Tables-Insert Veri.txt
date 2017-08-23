@@ -2,6 +2,8 @@
 ##   Database Name :  worddb    ##
 ##################################
 
+##Autor:Lokman
+
 
 ##Create Database:
 create database worddb;
