@@ -2,7 +2,7 @@
 ##   Database Name :  worddb    ##
 ##################################
 
-##Autor:Lokman
+##Author:Lokman
 
 
 ##Create Database:
