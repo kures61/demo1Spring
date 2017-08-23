@@ -1,0 +1,75 @@
+##################################
+##   Database Name :  worddb    ##
+##################################
+
+
+##Create Database:
+create database worddb;
+use worddb;
+
+##Create Tables:
+CREATE TABLE `department` (
+    `dept_id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(45) NOT NULL,
+    `description` varchar(45) NOT NULL,
+   PRIMARY KEY (`dept_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `employee` (
+    `emp_id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(45) NOT NULL,
+    `surname` varchar(45) NOT NULL,
+    `salary` int(11)  ,
+    `dept_id` int(11) NOT NULL,
+    PRIMARY KEY (`emp_id`),
+    CONSTRAINT fk_emp_dept FOREIGN KEY (dept_id) REFERENCES department(dept_id)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+ALTER TABLE `employee` ADD INDEX (dept_id);
+
+CREATE TABLE `meeting` (
+    `mtng_id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(45) NOT NULL,
+    `description` varchar(45) NOT NULL,
+    PRIMARY KEY (`mtng_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `meeting_detay` (
+    `mtng_dty_id` int(11) NOT NULL AUTO_INCREMENT,
+    `mtng_id` int(11) NOT NULL ,
+    `dept_id` int(11) NOT NULL ,
+    PRIMARY KEY (`mtng_dty_id`),
+CONSTRAINT fk_mtng_dty_mtng FOREIGN KEY (mtng_id) REFERENCES meeting(mtng_id),
+CONSTRAINT fk_mtng_dty_dept FOREIGN KEY (dept_id) REFERENCES department(dept_id)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+##INSERT Department Data:
+insert into `department` (`dept_id`, `name` ,`description` ) values ( null, 'Matematik' ,'Matematik Ana Bilim Dalý');
+insert into `department` (`dept_id`, `name` ,`description` ) values ( null, 'Bilgi Ýþlem' ,'Bilgi Ýþlem Dairesi Baþkanlýðý');
+insert into `department` (`dept_id`, `name` ,`description` ) values ( null, 'Toptan Satýþ' ,'Toptan Satýþ ve Pazarlama Dairesi');
+
+##INSERT Employee Data: (Not: autoIncrement start with 25 )
+insert into `employee` (`emp_id`,`name`,`surname`,`salary`,`dept_id`) values (null, 'Lokman','Canavar','1550','25');
+insert into `employee` (`emp_id`,`name`,`surname`,`salary`,`dept_id`) values (null, 'Ali Faruk','Gözügüzel','2250','25');
+insert into `employee` (`emp_id`,`name`,`surname`,`salary`,`dept_id`) values (null, 'Hasan Þaabettin','Þahbaz','2350','26');
+insert into `employee` (`emp_id`,`name`,`surname`,`salary`,`dept_id`) values (null, 'Ali Veli','Kýrkdokuzelli','3200','26');
+insert into `employee` (`emp_id`,`name`,`surname`,`salary`,`dept_id`) values (null, 'Cem Karaca','Þahinbakýþ','3200','27');
+insert into `employee` (`emp_id`,`name`,`surname`,`salary`,`dept_id`) values (null, 'Mustafa Efe','Karahanlýoðullarý','2200','26');
+
+##INSERT Meeting Data: (Not: autoIncrement start with 25 )
+insert into `meeting` (`mtng_id`,`name`,`description`) values (null,'Mate-Müzik','Matematik Muzik Ýle Ögrenilebilir mi?');
+insert into `meeting` (`mtng_id`,`name`,`description`) values (null,'Sazlý-Sözlü','Saz Çalanlarý Koruyanlar Derneði Eðlencesi');
+insert into `meeting` (`mtng_id`,`name`,`description`) values (null,'JQuery Eðitim','JQuery Ýnterektif Eðitim');
+
+##INSERT Meeting Detail Data: (Not: autoIncrement start with 25 )
+insert into `meeting_detay` (`mtng_dty_id`,`mtng_id` ,`dept_id` ) values (null,'25','25');
+insert into `meeting_detay` (`mtng_dty_id`,`mtng_id` ,`dept_id` ) values (null,'26','25');
+insert into `meeting_detay` (`mtng_dty_id`,`mtng_id` ,`dept_id` ) values (null,'26','26');
+insert into `meeting_detay` (`mtng_dty_id`,`mtng_id` ,`dept_id` ) values (null,'27','25');
+insert into `meeting_detay` (`mtng_dty_id`,`mtng_id` ,`dept_id` ) values (null,'27','26');
+insert into `meeting_detay` (`mtng_dty_id`,`mtng_id` ,`dept_id` ) values (null,'27','27');
+
+
+
